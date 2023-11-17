@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rm -rf ./dist && tsc && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/gabriel-francelino/LibrarySystem/issues"
   },
-  "homepage": "https://github.com/gabriel-francelino/LibrarySystem#readme"
+  "homepage": "https://github.com/gabriel-francelino/LibrarySystem#readme",
+  "devDependencies": {
+    "typescript": "5.2.2"
+  }
 }
