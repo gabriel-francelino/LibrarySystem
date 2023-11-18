@@ -16,5 +16,40 @@ export class Library {
         this._borrowings = [];
     }
 
-    borrowBook(bookName: string, userName: string): void {}
+    addBook() {
+        // TODO
+    }
+
+    removeBook() {
+        // TODO
+    }
+
+    addUser() {
+        // TODO
+    }
+
+    removeUser() {
+        // TODO
+    }
+
+    addAuthor() {
+        // TODO
+    }
+
+    removeAuthor() {
+        // TODO
+    }
+
+    borrowBook(bookName: string, userName: string): void {
+        const book = this._books.find((book) => book.title === bookName);
+        const user = this._users.find((user) => user.name === userName);
+
+        if (book && user) {
+            const borrowing = new Borrowing(book, user);
+            this._borrowings.push(borrowing);
+            book.amount = book.amount - 1;
+        } else {
+            throw new Error("Book or user not found");
+        }
+    }
 }
