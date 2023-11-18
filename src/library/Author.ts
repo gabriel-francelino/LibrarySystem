@@ -15,4 +15,24 @@ export class Author {
         this._dateOfBirth = dateOfBirth;
         this._books = [];
     }
+
+    get id(): number {
+        return this._id;
+    }
+
+    get name(): string {
+        return this._name;
+    }
+
+    get nationality(): string {
+        return this.nationality;
+    }
+
+    get dateOfBirth(): Date {
+        return this._dateOfBirth;
+    }
+
+    get books(): Book[] {
+        return this._books;
+    }
 }

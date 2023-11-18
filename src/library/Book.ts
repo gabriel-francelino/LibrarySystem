@@ -23,4 +23,32 @@ export class Book {
         this._genre = genre;
         this._amount = amount;
     }
+
+    get id(): number {
+        return this._id;
+    }
+
+    get title(): string {
+        return this._title;
+    }
+
+    get author(): Author {
+        return this._author;
+    }
+
+    get year(): number {
+        return this._year;
+    }
+
+    get genre(): string {
+        return this._genre;
+    }
+
+    get amount(): number {
+        return this._amount;
+    }
+
+    set amount(amount: number) {
+        this._amount = amount;
+    }
 }

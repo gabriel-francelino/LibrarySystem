@@ -14,4 +14,20 @@ export class Borrowing {
         this._returnedAt = new Date();
         this._returnedAt.setDate(this._borrowedAt.getDate() + 7);
     }
+
+    get book(): Book {
+        return this._book;
+    }
+
+    get user(): User {
+        return this._user;
+    }
+
+    get borrowedAt(): Date {
+        return this._borrowedAt;
+    }
+
+    get returnedAt(): Date {
+        return this._returnedAt;
+    }
 }
