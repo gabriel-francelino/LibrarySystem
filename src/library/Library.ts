@@ -3,6 +3,7 @@ import { Book } from "./Book";
 import { Borrowing } from "./Borrowing";
 import { User } from "./User";
 import { DataValidation } from "./validation/DataValitation";
+import { OperationValidation } from "./validation/OperationValidation";
 
 export class Library {
     private _books: Book[];
@@ -38,9 +39,7 @@ export class Library {
         else throw new Error("Invalid book data");
     }
 
-    removeBook(id: number) {
-        
-    }
+    removeBook(id: number) {}
 
     addUser(user: User): void {
         if (
@@ -69,8 +68,11 @@ export class Library {
     }
 
     borrowBook(bookName: string, userName: string): void {
-        const book = this._books.find((book) => book.title === bookName);
-        const user = this._users.find((user) => user.name === userName);
+        // const book = this._books.find((book) => book.title === bookName);
+        // const user = this._users.find((user) => user.name === userName);
+
+        const book = OperationValidation.findBook(bookName, this._books)
+        const user = OperationValidation.findUser(userName, this._users)
 
         if (book && user) {
             const borrowing = new Borrowing(book, user);
