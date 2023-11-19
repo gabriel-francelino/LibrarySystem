@@ -30,16 +30,49 @@ export class Library {
         return this._authors;
     }
 
+    get borrowings(): Borrowing[] {
+        return this._borrowings;
+    }
+
+    addAuthor(author: Author): void {
+        if (
+            DataValidation.validateAuthor(author) &&
+            !DataValidation.existsId(author.id, this._authors)
+        )
+            this._authors.push(author);
+        else if (
+            !DataValidation.validateAuthor(author) &&
+            DataValidation.existsId(author.id, this._authors)
+        ) 
+            throw new Error("Invalid author data");
+        
+    }
+
+    removeAuthor() {
+        // TODO
+    }
+
     addBook(book: Book): void {
         if (
             DataValidation.validateBook(book) &&
             !DataValidation.existsId(book.id, this._books)
-        )
+        ) {
             this._books.push(book);
-        else throw new Error("Invalid book data");
+        } else if (DataValidation.existsId(book.id, this._books)) {
+            const newBook = OperationValidation.findBook(
+                book.title,
+                this._books
+            );
+            newBook.amount++;
+        } else throw new Error("Invalid book data");
     }
 
-    removeBook(id: number) {}
+    removeBook(id: number): void {
+        const bookRemoved = this._books.find(book => book.id === id)
+        if(bookRemoved)
+            this._books.splice(this._books.indexOf(bookRemoved), 1)
+        else throw new Error('Could not remove book')
+    }
 
     addUser(user: User): void {
         if (
@@ -54,30 +87,38 @@ export class Library {
         // TODO
     }
 
-    addAuthor(author: Author): void {
-        if (
-            DataValidation.validateAuthor(author) &&
-            !DataValidation.existsId(author.id, this._authors)
-        )
-            this._authors.push(author);
-        else throw new Error("Invalid author data");
-    }
-
-    removeAuthor() {
-        // TODO
-    }
-
     borrowBook(bookName: string, userName: string): void {
         // const book = this._books.find((book) => book.title === bookName);
         // const user = this._users.find((user) => user.name === userName);
 
-        const book = OperationValidation.findBook(bookName, this._books)
-        const user = OperationValidation.findUser(userName, this._users)
+        const book = OperationValidation.findBook(bookName, this._books);
+        const user = OperationValidation.findUser(userName, this._users);
 
         if (book && user) {
             const borrowing = new Borrowing(book, user);
             this._borrowings.push(borrowing);
             book.amount = book.amount - 1;
+        } else {
+            throw new Error("Book or user not found");
+        }
+    }
+
+    returnBook(bookName: string, userName: string): void {
+        const book = OperationValidation.findBook(bookName, this._books);
+        const user = OperationValidation.findUser(userName, this._users);
+
+        if (book && user) {
+            const borrowing = this._borrowings.find(
+                (borrowing) =>
+                    borrowing.book.title === bookName &&
+                    borrowing.user.name === userName
+            );
+            if (borrowing) {
+                this._borrowings.splice(this._borrowings.indexOf(borrowing), 1);
+                book.amount = book.amount + 1;
+            } else {
+                throw new Error("Borrowing not found");
+            }
         } else {
             throw new Error("Book or user not found");
         }
