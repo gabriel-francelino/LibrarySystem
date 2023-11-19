@@ -4,18 +4,21 @@ import { Borrowing } from "./Borrowing";
 import { User } from "./User";
 import { DataValidation } from "./validation/DataValitation";
 import { OperationValidation } from "./validation/OperationValidation";
+import { Report } from "./Report";
 
 export class Library {
     private _books: Book[];
     private _users: User[];
     private _authors: Author[];
     private _borrowings: Borrowing[];
+    private _reports: Report;
 
     constructor() {
         this._books = [];
         this._users = [];
         this._authors = [];
         this._borrowings = [];
+        this._reports = new Report();
     }
 
     get books(): Book[] {
@@ -122,5 +125,23 @@ export class Library {
         } else {
             throw new Error("Book or user not found");
         }
+    }
+
+    listBooks(): void {
+        console.log("\n====================== LIVROS ======================");
+        this._reports.listBooks(this._books);
+        console.log("====================================================\n");
+    }
+
+    listAuthors(): void {
+        console.log("\n====================== AUTORES ======================");
+        this._reports.listAuthors(this._authors);
+        console.log("=====================================================\n");
+    }
+
+    listUsers(): void {
+        console.log("\n====================== USUÁRIOS ======================");
+        this._reports.listUsers(this._users);
+        console.log("======================================================\n");
     }
 }

@@ -21,4 +21,12 @@ export class User {
     get email(): string {
         return this._email;
     }
+
+    info(): void{
+        console.log(`\n---------- USUÁRIO ID: ${this._id} ----------`)
+        console.log(`Nome: ${this._name}`)
+        console.log(`Email: ${this._email}`)
+        console.log(`---------------------------------\n`)
+
+    }
 }

@@ -6,14 +6,12 @@ export class Author {
     private _name: string;
     private _nationality: string;
     private _dateOfBirth: Date;
-    private _books: Book[];
 
     constructor(name: string, nationality: string, dateOfBirth: Date) {
         this._id = ++Author._lastId;
         this._name = name;
         this._nationality = nationality;
         this._dateOfBirth = dateOfBirth;
-        this._books = [];
     }
 
     get id(): number {
@@ -32,7 +30,12 @@ export class Author {
         return this._dateOfBirth;
     }
 
-    get books(): Book[] {
-        return this._books;
+    info(): void{
+        console.log(`\n---------- AUTOR ID: ${this._id} ----------`)
+        console.log(`Nome: ${this._name}`)
+        console.log(`Nationality: ${this._nationality}`)
+        console.log(`Data de nascimento: ${this._dateOfBirth.toLocaleDateString('pt-br')}`)
+        console.log(`---------------------------------\n`)
+
     }
 }

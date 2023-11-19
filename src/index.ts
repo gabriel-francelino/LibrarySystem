@@ -66,9 +66,11 @@ try {
     library.borrowBook("Shadows of Destiny", "Gabriel");
     library.returnBook("Shadows of Destiny", "Gabriel");
 
-    console.log(library.authors);
-    console.log(library.borrowings);
-    console.log(library.books);
+    // console.log(library.authors);
+    // console.log(library.borrowings);
+    // console.log(library.books);
+
+    library.listUsers();
 } catch (Error) {
     console.log(Error.message);
 }

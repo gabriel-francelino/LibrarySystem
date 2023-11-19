@@ -51,4 +51,18 @@ export class Book {
     set amount(amount: number) {
         this._amount = amount;
     }
+
+    hasBook(): boolean{
+        return (this._amount > 0) ? true : false
+    }
+
+    info(): void{
+        console.log(`\n---------- LIVRO ID: ${this._id} ----------`)
+        console.log(`Título: ${this._title}`)
+        console.log(`Autor: ${this._author.name}`)
+        console.log(`Ano: ${this._year}`)
+        console.log(`Gênero: ${this._genre}`)
+        console.log(`Quantidade: ${this._amount}`)
+        console.log(`---------------------------------\n`)
+    }
 }
