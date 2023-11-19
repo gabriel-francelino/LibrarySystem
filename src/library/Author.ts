@@ -25,7 +25,7 @@ export class Author {
     }
 
     get nationality(): string {
-        return this.nationality;
+        return this._nationality;
     }
 
     get dateOfBirth(): Date {
