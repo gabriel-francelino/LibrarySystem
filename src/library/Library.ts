@@ -47,7 +47,7 @@ export class Library {
             !DataValidation.validateAuthor(author) &&
             DataValidation.existsId(author.id, this._authors)
         ) 
-            throw new Error("Invalid author data");
+            throw new Error("Informações do livro inválidas.");
         
     }
 
@@ -67,15 +67,20 @@ export class Library {
                 this._books
             );
             newBook.amount++;
-        } else throw new Error("Invalid book data");
+        } else throw new Error("Informações do livro inválidas.");
     }
 
     removeBook(id: number): void {
         const bookRemoved = this._books.find(book => book.id === id)
-        if(bookRemoved)
-            this._books.splice(this._books.indexOf(bookRemoved), 1)
-        else throw new Error('Could not remove book')
-    }
+
+        if(!bookRemoved){
+            throw new Error('Livro não encontrado.')
+        }
+        else if(this._borrowings.find(borrowing => borrowing.book.id === id)){
+            throw new Error('Livro possui exemplares emprestados.')
+        }
+        this._books.splice(this._books.indexOf(bookRemoved), 1)
+}
 
     addUser(user: User): void {
         if (
@@ -101,8 +106,6 @@ export class Library {
             const borrowing = new Borrowing(book, user);
             this._borrowings.push(borrowing);
             book.amount = book.amount - 1;
-        } else {
-            throw new Error("Book or user not found");
         }
     }
 
@@ -174,5 +177,5 @@ export class Library {
         this._reports.borrowedBooks(this._borrowings);
         console.log("=================================================================\n");
     }
-    
+
 }

@@ -9,7 +9,7 @@ export class OperationValidation {
         if (book) {
             return book
         }else{
-            throw new Error('Book does not exist')
+            throw new Error('Livro não encontrado.')
         }
     }
     static findAuthor(name: string, authors: Author[]){
@@ -17,7 +17,7 @@ export class OperationValidation {
         if (author) {
             return author
         }else{
-            throw new Error('author does not exist')
+            throw new Error('Autor não encontrado.')
         }
     }
     static findUser(name: string, users: User[]){
@@ -25,7 +25,7 @@ export class OperationValidation {
         if (user) {
             return user
         }else{
-            throw new Error('User does not exist')
+            throw new Error('Usuário não encontrado.')
         }
     }
     
