@@ -10,7 +10,7 @@ export class DataValidation {
                 "O título do livro deve ter no mínimo 2 caracteres."
             );
         }
-        if (book.author.name.length < 2) {
+        if (book.author && book.author.name.length < 2) {
             throw new Error("O nome do autor deve ter no mínimo 2 caracteres.");
         }
         if (book.year < 0) {
