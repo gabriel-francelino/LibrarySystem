@@ -66,7 +66,7 @@ export class DataValidation {
         if (item) {
             return true;
         }else{
-            throw new Error('Does not exist id')
+            return false
         }
     }
 }
