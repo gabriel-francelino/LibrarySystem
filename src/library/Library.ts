@@ -144,4 +144,35 @@ export class Library {
         this._reports.listUsers(this._users);
         console.log("======================================================\n");
     }
+
+    listAvailableBooks(): void {
+        console.log("\n====================== LIVROS DISPONÍVEIS ======================");
+        this._reports.availableBooks(this._books);
+        console.log("================================================================\n");
+    }
+
+    listUnavailableBooks(): void {
+        console.log("\n====================== LIVROS INDISPONÍVEIS ======================");
+        this._reports.unavailableBooks(this._books);
+        console.log("==================================================================\n");
+    }
+
+    listBooksByAuthor(authorName: string): void {
+        console.log("\n====================== LIVROS POR AUTOR ======================");
+        this._reports.booksByAuthor(authorName, this._books);
+        console.log("================================================================\n");
+    }
+
+    listBooksByGenre(genre: string): void {
+        console.log("\n====================== LIVROS POR GÊNERO ======================");
+        this._reports.booksByGenre(genre, this._books);
+        console.log("=================================================================\n");
+    }
+
+    listBorrowedBooks(): void {
+        console.log("\n====================== LIVROS EMPRESTADOS ======================");
+        this._reports.borrowedBooks(this._borrowings);
+        console.log("=================================================================\n");
+    }
+    
 }

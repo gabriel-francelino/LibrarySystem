@@ -30,4 +30,13 @@ export class Borrowing {
     get returnedAt(): Date {
         return this._returnedAt;
     }
+
+    info(): void {
+        console.log(`\n---------- EMPRÉSTIMO ----------`)
+        console.log(`Livro: ${this._book.title}`)
+        console.log(`Usuário: ${this._user.name}`)
+        console.log(`Data de empréstimo: ${this._borrowedAt.toLocaleDateString('pt-br')}`)
+        console.log(`Data de devolução: ${this._returnedAt.toLocaleDateString('pt-br')}`)
+        console.log(`---------------------------------\n`)
+    }
 }
