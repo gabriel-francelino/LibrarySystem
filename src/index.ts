@@ -64,7 +64,7 @@ try {
     library.removeBook(10);
 
     library.borrowBook("Shadows of Destiny", "Gabriel");
-    // library.returnBook("Shadows of Destiny", "Gabriel");
+    library.returnBook("Shadows of Destiny", "Gabriel");
 
     // console.log(library.authors);
     // console.log(library.borrowings);
