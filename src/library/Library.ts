@@ -2,6 +2,7 @@ import { Author } from "./Author";
 import { Book } from "./Book";
 import { Borrowing } from "./Borrowing";
 import { User } from "./User";
+import { DataValidation } from "./validation/DataValitation";
 
 export class Library {
     private _books: Book[];
@@ -16,24 +17,51 @@ export class Library {
         this._borrowings = [];
     }
 
-    addBook() {
-        // TODO
+    get books(): Book[] {
+        return this._books;
     }
 
-    removeBook() {
-        // TODO
+    get users(): User[] {
+        return this._users;
     }
 
-    addUser() {
-        // TODO
+    get authors(): Author[] {
+        return this._authors;
+    }
+
+    addBook(book: Book): void {
+        if (
+            DataValidation.validateBook(book) &&
+            !DataValidation.existsId(book.id, this._books)
+        )
+            this._books.push(book);
+        else throw new Error("Invalid book data");
+    }
+
+    removeBook(id: number) {
+        
+    }
+
+    addUser(user: User): void {
+        if (
+            DataValidation.validateUser(user) &&
+            !DataValidation.existsId(user.id, this._users)
+        )
+            this._users.push(user);
+        else throw new Error("Invalid user data");
     }
 
     removeUser() {
         // TODO
     }
 
-    addAuthor() {
-        // TODO
+    addAuthor(author: Author): void {
+        if (
+            DataValidation.validateAuthor(author) &&
+            !DataValidation.existsId(author.id, this._authors)
+        )
+            this._authors.push(author);
+        else throw new Error("Invalid author data");
     }
 
     removeAuthor() {
