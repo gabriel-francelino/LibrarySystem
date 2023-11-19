@@ -5,6 +5,9 @@ import { User } from "./User";
 import { DataValidation } from "./validation/DataValitation";
 import { OperationValidation } from "./validation/OperationValidation";
 import { Report } from "./Report";
+import { EntityNotFoundError } from "./exception/EntityNotFoundError";
+import { InvalidDataError } from "./exception/InvalidDataError";
+import { OperationNotCompletedError } from "./exception/OperationNotCompletedError";
 
 export class Library {
     private _books: Book[];
@@ -47,7 +50,7 @@ export class Library {
             !DataValidation.validateAuthor(author) &&
             DataValidation.existsId(author.id, this._authors)
         ) 
-            throw new Error("Informações do livro inválidas.");
+            throw new InvalidDataError("Informações do livro inválidas.");
         
     }
 
@@ -67,17 +70,17 @@ export class Library {
                 this._books
             );
             newBook.amount++;
-        } else throw new Error("Informações do livro inválidas.");
+        } else throw new InvalidDataError("Informações do livro inválidas.");
     }
 
     removeBook(id: number): void {
         const bookRemoved = this._books.find(book => book.id === id)
 
         if(!bookRemoved){
-            throw new Error('Livro não encontrado.')
+            throw new EntityNotFoundError('Livro não encontrado.')
         }
         else if(this._borrowings.find(borrowing => borrowing.book.id === id)){
-            throw new Error('Livro possui exemplares emprestados.')
+            throw new OperationNotCompletedError('Livro possui exemplares emprestados.')
         }
         this._books.splice(this._books.indexOf(bookRemoved), 1)
 }
@@ -88,7 +91,7 @@ export class Library {
             !DataValidation.existsId(user.id, this._users)
         )
             this._users.push(user);
-        else throw new Error("Invalid user data");
+        else throw new InvalidDataError("Informações de usuário inválidas.");
     }
 
     removeUser() {
