@@ -65,7 +65,8 @@ export class DataValidation {
         const item = array.find((item) => item.id === id);
         if (item) {
             return true;
+        }else{
+            throw new Error('Does not exist id')
         }
-        return false;
     }
 }
