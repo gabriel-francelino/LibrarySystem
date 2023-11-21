@@ -9,11 +9,7 @@ const library = new Library();
 const author1 = new Author("Elena Smith", "British", new Date("1980-03-15"));
 const author2 = new Author("David Johnson", "American", new Date("1975-11-28"));
 const author3 = new Author("Sophie Brown", "Canadian", new Date("1992-08-04"));
-const author4 = new Author(
-    "Carlos Rodriguez",
-    "Spanish",
-    new Date("1988-06-22")
-);
+const author4 = new Author("Carlos Rodriguez", "Spanish", new Date("1988-06-22"));
 const author5 = new Author("Emily Clark", "Australian", new Date("1979-09-10"));
 const author6 = new Author("James Turner", "British", new Date("1995-02-18"));
 const author7 = new Author("Olivia White", "American", new Date("1983-04-30"));
@@ -64,13 +60,16 @@ try {
     library.removeBook(10);
 
     library.borrowBook("Shadows of Destiny", "Gabriel");
+    library.borrowBook("The Enigma Key", "Gabriel");
     library.returnBook("Shadows of Destiny", "Gabriel");
-
-    // console.log(library.authors);
-    // console.log(library.borrowings);
-    // console.log(library.books);
-
+    library.listAvailableBooks();
+    library.listUnavailableBooks();
     library.listBorrowedBooks();
+    library.listUsers();
+    library.listAuthors();
+    library.listBooks();
+    library.listBooksByAuthor("Elena Smith");
+    library.listBooksByGenre("Adventure");
 } catch (Error) {
     console.log(Error.message);
 }
